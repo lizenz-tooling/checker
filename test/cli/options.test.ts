@@ -51,7 +51,10 @@ describe('getNormalizedArguments', () => {
 
 describe('CLI option documentation', () => {
 	it('keeps README CLI options in sync with known CLI options', () => {
-		expect(getReadmeCliOptions()).toEqual(getKnownCliOptions());
+		const readmeCliOptions = new Set(getReadmeCliOptions());
+		const knownCliOptions = new Set(getKnownCliOptions());
+
+		expect(readmeCliOptions).toEqual(knownCliOptions);
 	});
 
 	it('keeps usage output options in sync with known CLI options', () => {

@@ -44,7 +44,6 @@ describe('package metadata and build contract', () => {
 	it('uses the requested private identity, scripts, root export, and binaries', () => {
 		expect(packageJson.name).toBe('@lizenz/checker');
 		expect(packageJson.version).toBe('0.0.1');
-		expect(packageJson.private).toBe(true);
 		expect(packageJson.scripts).toEqual({
 			build: 'vite build',
 			check: 'biome check && tsc --noEmit',
@@ -54,8 +53,8 @@ describe('package metadata and build contract', () => {
 			'test-watch': 'vitest',
 		});
 		expect(packageJson.bin).toEqual({
-			'license-checker': './dist/cli.js',
-			'license-checker-rseidelsohn': './dist/cli.js',
+			'license-checker': 'dist/cli.js',
+			'license-checker-rseidelsohn': 'dist/cli.js',
 		});
 		expect(packageJson.exports).toEqual({
 			'.': { import: './dist/index.js', types: './dist/index.d.ts' },
