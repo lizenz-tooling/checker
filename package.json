@@ -30,6 +30,9 @@
 		"fix": "biome check --write",
 		"fix-unsafe": "biome check --write --unsafe"
 	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"engines": {
 		"node": ">=24",
 		"npm": ">=11"
