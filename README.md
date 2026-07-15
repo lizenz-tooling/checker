@@ -1,17 +1,15 @@
 # `@lizenz/checker`
 
 `@lizenz/checker` extracts license information from the installed dependency tree of an npm project. It is an ESM-only
-TypeScript port of `license-checker-rseidelsohn` at the frozen upstream commit
-`fa55e1197234e1a7efc662f7a3e76fe4212a25ec`.
+TypeScript port of `license-checker-rseidelsohn` at the frozen upstream commit `fa55e1197`.
 
 ## Command line
 
 The primary command is `license-checker`. Existing scripts can keep using the compatibility alias
-`license-checker-rseidelsohn`.
+`license-checker-rseidelsohn` (for now).
 
 All CLI options in alphabetical order:
 
-- `--angularCli`: synonym for the plain vertical output mode; the frozen compatibility baseline retains its historic behavior.
 - `--clarificationsFile`: read package-specific license clarifications from a JSON file.
 - `--clarificationsMatchAll`: fail if any clarification entry was not used.
 - `--color`: colorize terminal tree output.
@@ -20,7 +18,6 @@ All CLI options in alphabetical order:
 - `--customPath`: read a custom output format from a JSON file.
 - `--depth`: recurse through the specified number of dependency levels and override the direct setting.
 - `--development`: include only development dependencies.
-- `--direct`: retain the historic direct/depth normalization behavior.
 - `--excludeLicenses`: exclude a comma-separated list of licenses.
 - `--excludePackages`: exclude a semicolon-separated list of package selectors.
 - `--excludePackagesStartingWith`: exclude packages with semicolon-separated prefixes.
@@ -45,6 +42,12 @@ All CLI options in alphabetical order:
 - `--summary`: output license counts.
 - `--unknown`: report guessed licenses as unknown.
 - `--version` (`-v`): print the package version using the historic CLI exit behavior.
+
+Deprecated CLI options that still work, but will be removed in the future to reduce clutter and simplify usage:
+
+- `--angularCli`: synonym for the plain vertical output mode; the frozen compatibility baseline retains its historic behavior.
+- `--direct`: retain the historic direct/depth normalization behavior.
+
 
 When several output flags are present, precedence is JSON, CSV, Markdown, Summary, Plain Vertical, then Tree.
 
