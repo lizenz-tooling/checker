@@ -13,8 +13,8 @@
 		}
 	},
 	"bin": {
-		"license-checker": "./dist/cli.js",
-		"license-checker-rseidelsohn": "./dist/cli.js"
+		"license-checker": "dist/cli.js",
+		"license-checker-rseidelsohn": "dist/cli.js"
 	},
 	"files": [
 		"dist",
