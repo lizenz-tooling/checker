@@ -1,8 +1,23 @@
-.idea/
-.vscode/
 node_modules/
 dist/
 
 .envrc
 
+# System specific files:
 .DS_Store
+Thumbs.db
+
+# Editor specific files and directories:
+.vscode/
+*.code-workspace
+.idea/
+*.iws
+*.iml
+*.ipr
+*.sublime-project
+*.sublime-workspace
+Session.vim
+*~
+*.swp
+*.swo
+.netrwhist
