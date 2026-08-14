@@ -21,3 +21,6 @@ Session.vim
 *.swp
 *.swo
 .netrwhist
+
+# Tags created with ctags:
+tags
