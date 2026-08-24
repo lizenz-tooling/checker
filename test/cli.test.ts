@@ -11,6 +11,8 @@ const fixturePath = path.join(fixturesPath, 'custom-license-url');
 const licenseFileOnlyPath = path.join(fixturesPath, 'license-file-only');
 const fixturePackageName = 'custom-license@0.0.0';
 const fixtureLicense = 'Custom: http://example.com/dummy-license';
+const typesNodePackage = `@types/node@${packageJson.devDependencies['@types/node']}`;
+const spdxSatisfiesPackage = `spdx-satisfies@${packageJson.dependencies['spdx-satisfies']}`;
 const tempPath = (name: string) => path.join(tmpdir(), `license-checker-rseidelsohn-${Date.now()}-${name}`);
 
 describe('license checker bin', { timeout: 10e3 }, () => {
@@ -177,7 +179,7 @@ describe('license checker bin', { timeout: 10e3 }, () => {
 
 	// this test sometimes takes a while
 	it('should restrict the output to the provided packages', { timeout: 15e3 }, async () => {
-		const includedPackages = ['@types/node@24.13.2'];
+		const includedPackages = [typesNodePackage];
 		const { code, stderr, stdout } = await runBin(['--json', '--includePackages', includedPackages.join(';')]);
 
 		expect(code).toBe(0);
@@ -186,15 +188,19 @@ describe('license checker bin', { timeout: 10e3 }, () => {
 	});
 
 	it('should exclude provided excludedPackages from the output', async () => {
-		const excludedPackages = ['@types/node@24.13.2', 'spdx-satisfies@6.0.0'];
-		const { code, stderr, stdout } = await runBin(['--json', '--excludePackages', excludedPackages.join(';')]);
-		const packages = Object.keys(JSON.parse(stdout));
+		const includedPackages = [typesNodePackage, spdxSatisfiesPackage];
+		const excludedPackages = [typesNodePackage];
+		const { code, stderr, stdout } = await runBin([
+			'--json',
+			'--includePackages',
+			includedPackages.join(';'),
+			'--excludePackages',
+			excludedPackages.join(';'),
+		]);
 
 		expect(code).toBe(0);
 		expect(stderr).toBe('');
-		excludedPackages.forEach(pkg => {
-			expect(packages).not.toContain(pkg);
-		});
+		expect(Object.keys(JSON.parse(stdout))).toEqual([spdxSatisfiesPackage]);
 	});
 
 	it('should exclude packages starting with', async () => {
