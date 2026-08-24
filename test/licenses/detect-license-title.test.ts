@@ -150,12 +150,11 @@ describe('license parser', () => {
 			expect(detectLicenseTitle(licenseType)).toBe(licenseType);
 		});
 
-		it.each([
-			'(GPL-2.0+ WITH Bison-exception-2.2)',
-			'LGPL-2.0 OR (ISC AND BSD-3-Clause+)',
-			'Apache-2.0 OR ISC OR MIT',
-		])('should parse more complicated license expression %s', licenseType => {
-			expect(detectLicenseTitle(licenseType)).toBe(licenseType);
-		});
+		it.each(['(GPL-2.0+ WITH Bison-exception-2.2)', 'LGPL-2.0 OR (ISC AND BSD-3-Clause+)', 'Apache-2.0 OR ISC OR MIT'])(
+			'should parse more complicated license expression %s',
+			licenseType => {
+				expect(detectLicenseTitle(licenseType)).toBe(licenseType);
+			}
+		);
 	});
 });
