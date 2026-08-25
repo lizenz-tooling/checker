@@ -1,8 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import chalk from 'chalk';
-// @ts-expect-error lodash.clonedeep does not publish TypeScript declarations.
-import cloneDeep from 'lodash.clonedeep';
 import { asCSV } from './csv';
 import { filterAttributes } from './filter-attributes';
 import { asMarkDown, asPlainVertical, asSummary, asTree } from './renderers';
@@ -66,9 +64,8 @@ function filterJson(limitAttributes: string | undefined, json: OutputData): Outp
 }
 
 export function getFormattedOutput(modulesWithVersions: OutputData, args: FormatOutputArgs): string {
-	let filteredJson: OutputData | null = filterJson(args.limitAttributes, modulesWithVersions);
-	const jsonCopy = cloneDeep(filteredJson) as OutputData;
-	filteredJson = null;
+	const filteredJson = filterJson(args.limitAttributes, modulesWithVersions);
+	const jsonCopy = structuredClone(filteredJson);
 
 	if (args.files) {
 		for (const moduleName of Object.keys(jsonCopy)) {
