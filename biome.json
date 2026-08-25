@@ -7,7 +7,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!test/config/custom_format_broken.json", "!test/snapshots/index.d.ts"]
+		"includes": ["**", "!test/config/custom_format_broken.json"]
 	},
 	"formatter": {
 		"indentStyle": "tab",

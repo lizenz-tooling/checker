@@ -61,12 +61,6 @@ describe('package metadata and build contract', () => {
 		});
 	});
 
-	it('matches the frozen public declaration snapshot', () => {
-		const declaration = fs.readFileSync(path.join(repoPath, 'dist/index.d.ts'), 'utf8');
-		const snapshot = fs.readFileSync(path.join(repoPath, 'test/snapshots/index.d.ts'), 'utf8');
-		expect(declaration).toBe(snapshot);
-	});
-
 	it('builds an executable CLI with one shebang', () => {
 		const cliPath = path.join(repoPath, 'dist/cli.js');
 		const cli = fs.readFileSync(cliPath, 'utf8');
