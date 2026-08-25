@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import readInstalledPackages from '../../src/dependencies/read-installed-packages.js';
+import readInstalledPackages from '../../src/dependencies/read-installed-packages';
 
 type PackageJson = Record<string, unknown>;
 type PackageLockPackages = Record<string, unknown>;

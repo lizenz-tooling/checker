@@ -1,13 +1,9 @@
 #!/usr/bin/env node
 
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { getNormalizedArguments, knownOptions } from './cli/options.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { exitProcessOrWarnIfNeeded } from './cli/preflight.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { type LicenseCheckOptions, runLicenseCheck } from './index.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { colorizeOutput, getFormattedOutput, shouldColorizeOutput } from './output/format-output.js';
+import { getNormalizedArguments, knownOptions } from './cli/options';
+import { exitProcessOrWarnIfNeeded } from './cli/preflight';
+import { type LicenseCheckOptions, runLicenseCheck } from './index';
+import { colorizeOutput, getFormattedOutput, shouldColorizeOutput } from './output/format-output';
 
 const parsedArgs = getNormalizedArguments();
 const known = Object.keys(knownOptions);

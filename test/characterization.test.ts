@@ -1,9 +1,9 @@
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { getNormalizedArguments, knownOptions, setDefaultArguments, shortHands } from '../src/cli/options.js';
-import { runLicenseCheck } from '../src/index.js';
-import { getFormattedOutput, shouldColorizeOutput } from '../src/output/format-output.js';
-import { runBin } from './test-helpers.js';
+import { runLicenseCheck } from '../src';
+import { getNormalizedArguments, knownOptions, setDefaultArguments, shortHands } from '../src/cli/options';
+import { getFormattedOutput, shouldColorizeOutput } from '../src/output/format-output';
+import { runBin } from './test-helpers';
 
 const repoPath = path.resolve(import.meta.dirname, '..');
 const fixturePath = path.join(import.meta.dirname, 'fixtures/includeBSD');
@@ -131,7 +131,7 @@ describe('frozen normalization and renderer edge cases', () => {
 		const modules = { 'foo@1.0.0': { licenses: 'MIT', repository: '/foo' } };
 		expect(getFormattedOutput(modules, { csv: true, json: true, markdown: true, summary: true })).toMatch(/^\{/);
 		expect(getFormattedOutput(modules, { csv: true, markdown: true, summary: true })).toMatch(/^"module name"/);
-		expect(getFormattedOutput(modules, { markdown: true, summary: true })).toMatch(/^- \[foo@1\.0\.0\]/);
+		expect(getFormattedOutput(modules, { markdown: true, summary: true })).toMatch(/^- \[foo@1\.0\.0]/);
 		expect(getFormattedOutput(modules, { summary: true })).toContain('MIT');
 		expect(getFormattedOutput(modules, { plainVertical: true })).toContain('foo 1.0.0\nMIT');
 	});

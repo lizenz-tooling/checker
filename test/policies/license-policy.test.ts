@@ -5,7 +5,7 @@ import {
 	getLicenseMatch,
 	getLicensePolicy,
 	throwIfLicensePolicyFails,
-} from '../../src/policies/license-policy.js';
+} from '../../src/policies/license-policy';
 
 describe('getLicensePolicy', () => {
 	it('parses failOn policies and keeps failOn precedence over onlyAllow', () => {

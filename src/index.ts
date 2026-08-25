@@ -2,21 +2,13 @@ import path from 'node:path';
 import chalk from 'chalk';
 // @ts-expect-error debug does not publish TypeScript declarations.
 import debug from 'debug';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { deleteNonDirectDependencies } from './dependencies/direct-dependencies.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import readInstalledPackages from './dependencies/read-installed-packages.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { readJson } from './files/read-json.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { assertAllClarificationsWereUsed, readClarifications } from './licenses/clarifications.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { collectLicenseResults } from './licenses/collect-license-results.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { getFormattedOutput } from './output/format-output.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { writeIndividualLicenseFilesToDir, writeOutputToFile } from './output/write-output.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
+import { deleteNonDirectDependencies } from './dependencies/direct-dependencies';
+import readInstalledPackages from './dependencies/read-installed-packages';
+import { readJson } from './files/read-json';
+import { assertAllClarificationsWereUsed, readClarifications } from './licenses/clarifications';
+import { collectLicenseResults } from './licenses/collect-license-results';
+import { getFormattedOutput } from './output/format-output';
+import { writeIndividualLicenseFilesToDir, writeOutputToFile } from './output/write-output';
 import { getLicenseMatch, getLicensePolicy, throwIfLicensePolicyFails } from './policies/license-policy.js';
 import {
 	excludePackages,
@@ -24,8 +16,7 @@ import {
 	excludePrivatePackages,
 	getOptionArray,
 	includePackages,
-	// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-} from './policies/package-filters.js';
+} from './policies/package-filters';
 
 const LICENSE_TITLE_UNKNOWN = 'UNKNOWN';
 const LICENSE_TITLE_UNLICENSED = 'UNLICENSED';

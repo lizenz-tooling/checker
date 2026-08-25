@@ -5,7 +5,7 @@ import {
 	excludePrivatePackages,
 	getOptionArray,
 	includePackages,
-} from '../../src/policies/package-filters.js';
+} from '../../src/policies/package-filters';
 
 const packages = {
 	'@scope/foo@1.0.0': { licenses: 'MIT' },

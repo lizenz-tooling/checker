@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { colorizeOutput, getFormattedOutput, shouldColorizeOutput } from '../../src/output/format-output.js';
+import { colorizeOutput, getFormattedOutput, shouldColorizeOutput } from '../../src/output/format-output';
 
 describe('shouldColorizeOutput', () => {
 	it('allows color only for terminal tree output', () => {

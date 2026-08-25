@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import packageJson from '../../package.json' with { type: 'json' };
-import { exitProcessOrWarnIfNeeded } from '../../src/cli/preflight.js';
+import { exitProcessOrWarnIfNeeded } from '../../src/cli/preflight';
 
 describe('exitProcessOrWarnIfNeeded', () => {
 	it('warns when failOn contains commas', () => {

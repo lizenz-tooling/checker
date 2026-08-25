@@ -1,5 +1,4 @@
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { usageMessage } from './usage.js';
+import { usageMessage } from './usage';
 
 const version = __PACKAGE_VERSION__;
 

@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { assertAllClarificationsWereUsed, readClarifications } from '../../src/licenses/clarifications.js';
+import { assertAllClarificationsWereUsed, readClarifications } from '../../src/licenses/clarifications';
 
 const clarificationsPath = path.join(import.meta.dirname, '../fixtures/clarifications');
 

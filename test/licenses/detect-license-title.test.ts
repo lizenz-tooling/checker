@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { detectLicenseTitle } from '../../src/licenses/detect-license-title.js';
+import { detectLicenseTitle } from '../../src/licenses/detect-license-title';
 
 describe('license parser', () => {
 	it('should export a function', () => {

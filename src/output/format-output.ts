@@ -3,12 +3,9 @@ import path from 'node:path';
 import chalk from 'chalk';
 // @ts-expect-error lodash.clonedeep does not publish TypeScript declarations.
 import cloneDeep from 'lodash.clonedeep';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { asCSV } from './csv.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { filterAttributes } from './filter-attributes.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { asMarkDown, asPlainVertical, asSummary, asTree } from './renderers.js';
+import { asCSV } from './csv';
+import { filterAttributes } from './filter-attributes';
+import { asMarkDown, asPlainVertical, asSummary, asTree } from './renderers';
 
 type OutputModule = Record<string, unknown> & {
 	licenseFile?: unknown;

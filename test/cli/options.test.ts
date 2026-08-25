@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { supportsColor } from 'chalk';
 import { describe, expect, it } from 'vitest';
-import { getNormalizedArguments, knownOptions, setDefaultArguments, shortHands } from '../../src/cli/options.js';
-import { usageMessage } from '../../src/cli/usage.js';
+import { getNormalizedArguments, knownOptions, setDefaultArguments, shortHands } from '../../src/cli/options';
+import { usageMessage } from '../../src/cli/usage';
 
 type ArgumentFormat = 'json' | 'markdown' | 'csv' | 'summary';
 

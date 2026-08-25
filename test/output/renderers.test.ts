@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { asMarkDown, asPlainVertical, asSummary, asTree } from '../../src/output/renderers.js';
-import { getPackageKey } from '../test-helpers.js';
-import { normalOutput, withBsd, withCustomFormat } from './renderers.testdata.js';
+import { asMarkDown, asPlainVertical, asSummary, asTree } from '../../src/output/renderers';
+import { getPackageKey } from '../test-helpers';
+import { normalOutput, withBsd, withCustomFormat } from './renderers.testdata';
 
 const customFormat = {
 	name: '<<Default Name>>',

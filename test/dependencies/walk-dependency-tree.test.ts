@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { walkDependencyTree } from '../../src/dependencies/walk-dependency-tree.js';
+import { walkDependencyTree } from '../../src/dependencies/walk-dependency-tree';
 
 describe('walkDependencyTree', () => {
 	it('visits root and direct dependencies when maxDepth is 0', () => {

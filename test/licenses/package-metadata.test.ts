@@ -6,7 +6,7 @@ import {
 	getAuthorDetails,
 	getRepositoryUrl,
 	storeReadmeInPackageJsonIfExists,
-} from '../../src/licenses/package-metadata.js';
+} from '../../src/licenses/package-metadata';
 
 const tempDirs: string[] = [];
 

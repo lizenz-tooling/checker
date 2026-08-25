@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import packageJson from '../package.json' with { type: 'json' };
-import { runBin } from './test-helpers.js';
+import { runBin } from './test-helpers';
 
 const repoPath = path.resolve(import.meta.dirname, '..');
 const fixturesPath = path.join(import.meta.dirname, 'fixtures');

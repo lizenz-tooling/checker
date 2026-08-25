@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { firstDefined } from '../../src/shared/first-defined.js';
+import { firstDefined } from '../../src/shared/first-defined';
 
 describe('firstDefined', () => {
 	it('returns the first value that is not undefined', () => {

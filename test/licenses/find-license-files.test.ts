@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { findLicenseFiles } from '../../src/licenses/find-license-files.js';
+import { findLicenseFiles } from '../../src/licenses/find-license-files';
 
 describe('license files detector', () => {
 	it('should export a function', () => {

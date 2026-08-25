@@ -63,8 +63,7 @@
 					"fix": "safe"
 				},
 				"noUnusedVariables": "off",
-				"useSingleJsDocAsterisk": "warn",
-				"useImportExtensions": "error"
+				"useSingleJsDocAsterisk": "warn"
 			}
 		}
 	},

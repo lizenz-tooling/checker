@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readJson } from '../../src/files/read-json.js';
+import { readJson } from '../../src/files/read-json';
 
 describe('readJson', () => {
 	it('should parse json successfully (File exists + was json)', () => {

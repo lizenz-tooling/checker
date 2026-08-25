@@ -1,5 +1,4 @@
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { readJson } from '../files/read-json.js';
+import { readJson } from '../files/read-json';
 
 export type Clarification = Record<string, unknown> & {
 	semverRange: string;

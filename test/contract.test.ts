@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import * as checker from '../src/index.js';
-import { type LicenseCheckOptions, runLicenseCheck } from '../src/index.js';
+import * as checker from '../src';
+import { type LicenseCheckOptions, runLicenseCheck } from '../src';
 
 const fixturesPath = path.join(import.meta.dirname, 'fixtures');
 const temporaryPaths: string[] = [];

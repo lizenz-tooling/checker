@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { rimraf } from 'rimraf';
 import { describe, expect, it, vi } from 'vitest';
-import { writeIndividualLicenseFilesToDir } from '../../src/output/write-output.js';
+import { writeIndividualLicenseFilesToDir } from '../../src/output/write-output';
 
 const licensePath = path.resolve(import.meta.dirname, '../..', 'LICENSE');
 

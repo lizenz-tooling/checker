@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { collectLicenseResults } from '../../src/licenses/collect-license-results.js';
+import { collectLicenseResults } from '../../src/licenses/collect-license-results';
 
 const collect = (rootPackage: Record<string, unknown>, options: Record<string, unknown> = {}) =>
 	collectLicenseResults({

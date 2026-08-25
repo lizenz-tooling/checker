@@ -3,18 +3,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 // @ts-expect-error semver does not publish TypeScript declarations.
 import semver from 'semver';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { walkDependencyTree } from '../dependencies/walk-dependency-tree.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { firstDefined } from '../shared/first-defined.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { getCopyrightLines } from './copyright.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { detectLicenseTitle } from './detect-license-title.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { findLicenseFiles } from './find-license-files.js';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { getAuthorDetails, getRepositoryUrl, storeReadmeInPackageJsonIfExists } from './package-metadata.js';
+import { walkDependencyTree } from '../dependencies/walk-dependency-tree';
+import { firstDefined } from '../shared/first-defined';
+import { getCopyrightLines } from './copyright';
+import { detectLicenseTitle } from './detect-license-title';
+import { findLicenseFiles } from './find-license-files';
+import { getAuthorDetails, getRepositoryUrl, storeReadmeInPackageJsonIfExists } from './package-metadata';
 
 // biome-ignore lint/suspicious/noExplicitAny: Preserve the Legacy package metadata's deliberately permissive shape.
 type LegacyValue = any;

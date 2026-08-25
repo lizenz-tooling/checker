@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { deleteNonDirectDependencies } from '../../src/dependencies/direct-dependencies.js';
+import { deleteNonDirectDependencies } from '../../src/dependencies/direct-dependencies';
 
 describe('deleteNonDirectDependencies', () => {
 	it('keeps only direct dependencies by default', () => {

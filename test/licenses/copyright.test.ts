@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getCopyrightLines } from '../../src/licenses/copyright.js';
+import { getCopyrightLines } from '../../src/licenses/copyright';
 
 describe('getCopyrightLines', () => {
 	it('finds copyright paragraphs and removes duplicate first-line repeats', () => {

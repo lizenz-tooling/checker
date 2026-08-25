@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { readJson } from '../../src/files/read-json.js';
-import { filterAttributes } from '../../src/output/filter-attributes.js';
+import { readJson } from '../../src/files/read-json';
+import { filterAttributes } from '../../src/output/filter-attributes';
 
 describe('filterAttributes', () => {
 	const path = './test/config/custom_format_correct.json';

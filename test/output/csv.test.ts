@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { asCSV } from '../../src/output/csv.js';
-import { getPackageKey } from '../test-helpers.js';
-import { normalOutput, withCustomFormat } from './renderers.testdata.js';
+import { asCSV } from '../../src/output/csv';
+import { getPackageKey } from '../test-helpers';
+import { normalOutput, withCustomFormat } from './renderers.testdata';
 
 const customFormat = {
 	name: '<<Default Name>>',

@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { runLicenseCheck } from '../src/index.js';
-import { getPackageKey } from './test-helpers.js';
+import { runLicenseCheck } from '../src';
+import { getPackageKey } from './test-helpers';
 
 type LicenseCheckItem = {
 	copyright?: string;

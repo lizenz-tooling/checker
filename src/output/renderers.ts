@@ -1,8 +1,7 @@
 import fs from 'node:fs';
 // @ts-expect-error treeify does not publish TypeScript declarations.
 import treeify from 'treeify';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { detectLicenseTitle } from '../licenses/detect-license-title.js';
+import { detectLicenseTitle } from '../licenses/detect-license-title';
 
 type OutputModule = Record<string, unknown> & {
 	licenseFile?: unknown;

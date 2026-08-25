@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-// biome-ignore lint/correctness/useImportExtensions: The emitted ESM import addresses the generated JavaScript file.
-import { firstDefined } from '../shared/first-defined.js';
+import { firstDefined } from '../shared/first-defined';
 
 interface RepositoryDetails {
 	clarificationRepository?: unknown;
