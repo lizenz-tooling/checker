@@ -66,7 +66,7 @@
 		"treeify": "1.1.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.8",
+		"@biomejs/biome": "2.5.9",
 		"@tsconfig/node24": "24.0.5",
 		"@types/node": "24.13.3",
 		"@types/spdx-expression-parse": "4.0.0",
