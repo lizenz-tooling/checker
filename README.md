@@ -1,7 +1,10 @@
 # `@lizenz/checker`
 
-`@lizenz/checker` extracts license information from the installed dependency tree of an npm project. It is an ESM-only
-TypeScript port of `license-checker-rseidelsohn` at the frozen upstream commit `fa55e1197`.
+Collects license information from a project's installed dependency tree. Useful for verifying against a list of licenses
+that you want to allow / disallow in your project.
+
+This package derives from the original `license-checker` work by Dav Glass and the updated `license-checker-rseidelsohn`
+maintained by Roman Seidelsohn and Roland Hummel.
 
 ## Command line
 
@@ -45,29 +48,27 @@ All CLI options in alphabetical order:
 
 Deprecated CLI options that still work, but will be removed in the future to reduce clutter and simplify usage:
 
-- `--angularCli`: synonym for the plain vertical output mode; the frozen compatibility baseline retains its historic behavior.
+- `--angularCli`: synonym for the plain vertical output mode; the frozen compatibility baseline retains its historic
+  behavior.
 - `--direct`: retain the historic direct/depth normalization behavior.
 
-
-When several output flags are present, precedence is JSON, CSV, Markdown, Summary, Plain Vertical, then Tree.
+When several "output" flags are present, precedence is JSON, CSV, Markdown, Summary, Plain Vertical, then Tree.
 
 ## Programmatic API
 
 ```ts
-import { runLicenseCheck } from '@lizenz/checker';
+import {runLicenseCheck} from '@lizenz/checker';
 
-const modules = await runLicenseCheck({ start: process.cwd() });
+const modules = await runLicenseCheck({start: process.cwd()});
 ```
 
 `runLicenseCheck` returns a promise and never terminates the host process. Policy, clarification, input, and file-system
-errors reject that promise. The deprecated callback-based `init` wrapper remains available for compatibility with the
-upstream API; new code should use `runLicenseCheck`.
+errors reject that promise.
+
+For compatibility with the original API, there is also a callback-based variant called `init`. It is deprecated here,
+and will be removed in a future release. Most projects will rely on the CLI anyway, but to those who are using the
+programmatic API, we recommend to migrate to `runLicenseCheck`.
 
 ## Debugging
 
 Use the namespaces `@lizenz/checker:error` and `@lizenz/checker:log` with the `DEBUG` environment variable.
-
-## License and upstream
-
-This package is distributed under the BSD 3-Clause License. It derives from the original `license-checker` work by Dav
-Glass and the enhanced `license-checker-rseidelsohn` maintained by Roman Seidelsohn and Roland Hummel.
