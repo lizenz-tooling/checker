@@ -6,10 +6,43 @@ that you want to allow / disallow in your project.
 This package derives from the original `license-checker` work by Dav Glass and the updated `license-checker-rseidelsohn`
 maintained by Roman Seidelsohn and Roland Hummel.
 
-## Command line
+## Installation
 
-The primary command is `license-checker`. Existing scripts can keep using the compatibility alias
-`license-checker-rseidelsohn` (for now).
+It is recommended to install the package:
+
+Either globally:
+
+```shell
+npm install --global @lizenz/checker
+```
+
+Or as local devDependency in your project:
+
+```shell
+npm install --save-dev @lizenz/checker
+```
+
+Now, you can use the binary `license-checker` in your npm scripts. An example for such a script would look like this:
+
+```json5
+// in your package.json:
+{
+  // ...
+  "scripts": {
+    // ...
+    "ensureValidLicenses": "license-check --excludePackages foo,bar --failOn GPL-3.0-or-later --json"
+  }
+  // ...
+}
+```
+
+Alternatively, you can run it with `npx`:
+
+```shell
+npx @lizenz/checker --excludePackages foo,bar --failOn GPL-3.0-or-later --json
+```
+
+## Command line options
 
 All CLI options in alphabetical order:
 
@@ -55,6 +88,8 @@ Deprecated CLI options that still work, but will be removed in the future to red
 When several "output" flags are present, precedence is JSON, CSV, Markdown, Summary, Plain Vertical, then Tree.
 
 ## Programmatic API
+
+When you have installed the package into your project, you can call it programmatically:
 
 ```ts
 import {runLicenseCheck} from '@lizenz/checker';

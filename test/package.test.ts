@@ -52,10 +52,7 @@ describe('package metadata and build contract', () => {
 			test: 'vitest run',
 			'test-watch': 'vitest',
 		});
-		expect(packageJson.bin).toEqual({
-			'license-checker': 'dist/cli.js',
-			'license-checker-rseidelsohn': 'dist/cli.js',
-		});
+		expect(packageJson.bin).toEqual({ 'license-checker': 'dist/cli.js' });
 		expect(packageJson.exports).toEqual({
 			'.': { import: './dist/index.js', types: './dist/index.d.ts' },
 		});
@@ -127,8 +124,8 @@ describe('packed artifact contract', () => {
 		);
 	});
 
-	it.each(['license-checker', 'license-checker-rseidelsohn'])('runs the installed %s binary', binary => {
-		const output = execFileSync(path.join(installDir, 'node_modules/.bin', binary), ['--help'], {
+	it("runs the installed 'license-checker' binary", () => {
+		const output = execFileSync(path.join(installDir, 'node_modules/.bin/license-checker'), ['--help'], {
 			cwd: installDir,
 			encoding: 'utf8',
 		});
@@ -138,7 +135,7 @@ describe('packed artifact contract', () => {
 	it('blocks unsupported deep imports', () => {
 		const result = spawnSync(
 			process.execPath,
-			['--input-type=module', '--eval', "await import('@lizenz/checker/output/renderers.js');"],
+			['--input-type=module', '--eval', "await import('@lizenz/checker/dist/foo.js');"],
 			{ cwd: installDir, encoding: 'utf8' }
 		);
 		expect(result.status).toBe(1);

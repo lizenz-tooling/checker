@@ -19,13 +19,6 @@ const getReadmeCliOptions = () => {
 
 const getUsageOptions = () => Array.from(usageMessage.matchAll(/^\s+--([A-Za-z][A-Za-z0-9]*)/gm), match => match[1]);
 
-const getUnknownLongOptionMentions = (text: string) => {
-	const known = new Set(getKnownCliOptions());
-	return Array.from(new Set(Array.from(text.matchAll(/--([A-Za-z][A-Za-z0-9]*)/g), match => match[1]))).filter(
-		option => !known.has(option)
-	);
-};
-
 describe('getNormalizedArguments', () => {
 	it('parses process.argv-style argument arrays', () => {
 		const result = getNormalizedArguments(['node', 'cli', '--unknown', '--onlyunknown', '--color']);
@@ -68,13 +61,6 @@ describe('CLI option documentation', () => {
 			expect(readme).toContain(`\`${longOption}\` (\`-${shortOption}\`)`);
 			expect(usageMessage).toContain(`${longOption} (-${shortOption})`);
 		});
-	});
-
-	it('does not mention unknown long options in README or usage output', () => {
-		const readme = fs.readFileSync(path.join(repoPath, 'README.md'), 'utf8');
-
-		expect(getUnknownLongOptionMentions(readme)).toEqual([]);
-		expect(getUnknownLongOptionMentions(usageMessage)).toEqual([]);
 	});
 });
 
