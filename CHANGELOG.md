@@ -1,7 +1,8 @@
 # Changelog
 
-## 1.0.0
+## 0.0.2
 
+- Fix behavior for `depth` and `direct` options (see https://github.com/lizenz-tooling/checker/issues/1)
 - Improve docs & type docs
 - Update & clean up dependencies
 - Remove `license-checker-rseidelsohn` "bin" entry (multiple bin entries sometimes cause problems 🤷)
