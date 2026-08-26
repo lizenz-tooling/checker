@@ -179,6 +179,24 @@ describe('runLicenseCheck with Arborist dependency trees', () => {
 		expect(output['transitive@1.0.0']).toBeUndefined();
 	});
 
+	it.each([
+		['direct: true', { direct: true, production: true }],
+		['depth: 0', { depth: 0, direct: 1 }],
+	] as const)('keeps only root and direct dependencies with %s', async (_label, options) => {
+		const output = await runLicenseCheck({ ...options, start: root });
+
+		expect(output['fixture-root@1.0.0']).toBeDefined();
+		expect(output['prod@1.0.0']).toBeDefined();
+		expect(output['@scope/scoped@1.0.0']).toBeDefined();
+		expect(output['transitive@1.0.0']).toBeUndefined();
+	});
+
+	it('does not restrict dependency depth with direct: false', async () => {
+		const output = await runLicenseCheck({ direct: false, start: root });
+
+		expect(output['transitive@1.0.0']).toBeDefined();
+	});
+
 	it('omits peer dependencies when nopeer is set', async () => {
 		const output = await runLicenseCheck({ nopeer: true, start: root });
 

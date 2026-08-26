@@ -2,7 +2,7 @@
 
 import { getNormalizedArguments, knownOptions } from './cli/options';
 import { exitProcessOrWarnIfNeeded } from './cli/preflight';
-import { type LicenseCheckOptions, runLicenseCheck } from './index';
+import { runLicenseCheck } from './index';
 import { colorizeOutput, getFormattedOutput, shouldColorizeOutput } from './output/format-output';
 
 const parsedArgs = getNormalizedArguments();
@@ -12,7 +12,7 @@ const unknownArgs = Object.keys(parsedArgs).filter(arg => !known.includes(arg));
 exitProcessOrWarnIfNeeded({ unknownArgs, parsedArgs });
 
 try {
-	const foundLicensesJson = await runLicenseCheck(parsedArgs as LicenseCheckOptions);
+	const foundLicensesJson = await runLicenseCheck(parsedArgs);
 	if (!parsedArgs.out) {
 		if (shouldColorizeOutput(parsedArgs)) {
 			colorizeOutput(foundLicensesJson);

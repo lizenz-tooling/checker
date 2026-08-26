@@ -52,7 +52,9 @@ All CLI options in alphabetical order:
 - `--csv`: output CSV.
 - `--csvComponentPrefix`: add a component column prefix to CSV output.
 - `--customPath`: read a custom output format from a JSON file.
-- `--depth`: recurse through the specified number of dependency levels and override the direct setting.
+- `--depth`: limit how deeply dependencies are scanned. `0` includes only direct dependencies, `1` also includes their
+  immediate dependencies, and each larger value adds another level. Without this option, the complete installed
+  dependency tree is scanned.
 - `--development`: include only development dependencies.
 - `--excludeLicenses`: exclude a comma-separated list of licenses.
 - `--excludePackages`: exclude a semicolon-separated list of package selectors.
@@ -83,7 +85,9 @@ Deprecated CLI options that still work, but will be removed in the future to red
 
 - `--angularCli`: synonym for the plain vertical output mode; the frozen compatibility baseline retains its historic
   behavior.
-- `--direct`: retain the historic direct/depth normalization behavior.
+- `--direct`: compatibility alias for dependency depth. `--direct` or `--direct=true` means `--depth=0`; a numeric value
+  behaves like the same `--depth` value. If both options are present, `--depth` takes precedence. New invocations should
+  use `--depth` directly.
 
 When several "output" flags are present, precedence is JSON, CSV, Markdown, Summary, Plain Vertical, then Tree.
 
@@ -94,7 +98,9 @@ When you have installed the package into your project, you can call it programma
 ```ts
 import {runLicenseCheck} from '@lizenz/checker';
 
-const modules = await runLicenseCheck({start: process.cwd()});
+const modules = await runLicenseCheck({
+    start: process.cwd()
+});
 ```
 
 `runLicenseCheck` returns a promise and never terminates the host process. Policy, clarification, input, and file-system

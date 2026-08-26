@@ -40,6 +40,28 @@ describe('getNormalizedArguments', () => {
 		expect(getNormalizedArguments(['-h']).help).toBe(true);
 		expect(getNormalizedArguments(['-v']).version).toBe(true);
 	});
+
+	it.each([
+		[['--direct'], 0],
+		[['--direct=true'], 0],
+		[['--direct=2'], 2],
+	] as const)('normalizes %s into the canonical depth option', (args, expectedDepth) => {
+		const result = getNormalizedArguments([...args]);
+
+		expect(result.depth).toBe(expectedDepth);
+		expect(result).not.toHaveProperty('direct');
+	});
+
+	it.each([
+		{ args: [], label: 'no direct option' },
+		{ args: ['--direct=false'], label: '--direct=false' },
+		{ args: ['--no-direct'], label: '--no-direct' },
+	] as const)('leaves dependency depth unrestricted for $label', ({ args }) => {
+		const result = getNormalizedArguments([...args]);
+
+		expect(result.depth).toBeUndefined();
+		expect(result).not.toHaveProperty('direct');
+	});
 });
 
 describe('CLI option documentation', () => {
@@ -80,40 +102,28 @@ describe('setDefaultArguments', () => {
 		expect(result.start).toBe(repoPath);
 	});
 
-	it('should handle direct undefined', () => {
-		const result = setDefaultArguments({
-			direct: undefined,
-			start: repoPath,
-		});
-		expect(result.direct).toBe(Number.POSITIVE_INFINITY);
-		expect(result.start).toBe(repoPath);
-	});
-
-	it('should handle direct true', () => {
-		const result = setDefaultArguments({ direct: true, start: repoPath });
-		expect(result.direct).toBe(Number.POSITIVE_INFINITY);
-		expect(result.start).toBe(repoPath);
-	});
-
 	it('should override direct option with depth option', () => {
 		const result = setDefaultArguments({
 			direct: '9',
 			depth: '99',
 			start: repoPath,
 		});
-		expect(result.direct).toBe(99);
+		expect(result.depth).toBe(99);
+		expect(result).not.toHaveProperty('direct');
 		expect(result.start).toBe(repoPath);
 	});
 
 	it('should use depth for direct option when direct is not provided', () => {
 		const result = setDefaultArguments({ depth: '99', start: repoPath });
-		expect(result.direct).toBe(99);
+		expect(result.depth).toBe(99);
+		expect(result).not.toHaveProperty('direct');
 		expect(result.start).toBe(repoPath);
 	});
 
-	it('should normalize depth 0 to direct depth 0', () => {
+	it('should normalize depth 0', () => {
 		const result = setDefaultArguments({ depth: '0', start: repoPath });
-		expect(result.direct).toBe(0);
+		expect(result.depth).toBe(0);
+		expect(result).not.toHaveProperty('direct');
 	});
 
 	(['json', 'markdown', 'csv', 'summary'] as const).forEach((type: ArgumentFormat) => {

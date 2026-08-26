@@ -2,6 +2,7 @@ import path from 'node:path';
 import chalk from 'chalk';
 // @ts-expect-error debug does not publish TypeScript declarations.
 import debug from 'debug';
+import { resolveDependencyDepth } from './dependencies/dependency-depth';
 import { deleteNonDirectDependencies } from './dependencies/direct-dependencies';
 import readInstalledPackages from './dependencies/read-installed-packages';
 import { readJson } from './files/read-json';
@@ -93,19 +94,21 @@ export type LicenseCheckOptions = {
 	/** Exclude packages whose names start with any of the configured values. */
 	excludePackagesStartingWith?: string;
 	/**
-	 * Dependency traversal limit used by the checker.
+	 * Maximum dependency depth to scan.
 	 *
-	 * The CLI normalizes its `--direct` and `--depth` arguments to a number in this property. Boolean values remain
-	 * supported for compatibility.
-	 */
-	direct?: boolean | number;
-	/**
-	 * CLI recursion-depth argument.
-	 *
-	 * The CLI normalizes this value into {@link direct} before invoking the checker. Programmatic callers should set
-	 * {@link direct} instead.
+	 * `0` includes only direct dependencies, `1` also includes their immediate dependencies, and each larger value adds
+	 * another level. When omitted, the complete installed dependency tree is scanned.
 	 */
 	depth?: number;
+	/**
+	 * Legacy dependency-depth option.
+	 *
+	 * Numeric values behave like {@link depth}, while `true` restricts the result to direct dependencies and `false`
+	 * leaves the depth unrestricted. When both properties are set, {@link depth} takes precedence.
+	 *
+	 * @deprecated Use {@link depth} instead.
+	 */
+	direct?: boolean | number;
 	/** Colorize human-readable output and unknown-license markers. */
 	color?: boolean;
 	/** Custom output fields and their default values or inclusion toggles. */
@@ -177,8 +180,9 @@ export async function runLicenseCheck(options: LicenseCheckOptions): Promise<Mod
 		options.customFormat = readJson(options.customPath) as CustomFormat;
 	}
 
+	const dependencyDepth = resolveDependencyDepth(options);
 	const optionsForReadingInstalledPackages = {
-		depth: options.direct,
+		depth: dependencyDepth,
 		nopeer: options.nopeer,
 		dev: true,
 		log: debugLog,
@@ -209,7 +213,7 @@ export async function runLicenseCheck(options: LicenseCheckOptions): Promise<Mod
 		clarifications,
 		customFormat: options.customFormat,
 		development: options.development,
-		direct: options.direct,
+		direct: dependencyDepth,
 		production: options.production,
 		rootPackage: installedPackagesJson,
 		unknown: options.unknown,

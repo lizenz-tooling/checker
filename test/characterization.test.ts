@@ -100,13 +100,15 @@ describe('all CLI options and shorthands', () => {
 	});
 
 	it('parses and normalizes --direct', () => {
-		expect(getNormalizedArguments(['--direct=2']).direct).toBe(2);
+		const parsed = getNormalizedArguments(['--direct=2']);
+		expect(parsed.depth).toBe(2);
+		expect(parsed).not.toHaveProperty('direct');
 	});
 
 	it('parses --depth and gives it precedence over direct', () => {
 		const parsed = getNormalizedArguments(['--direct=9', '--depth=2']);
 		expect(parsed.depth).toBe(2);
-		expect(parsed.direct).toBe(2);
+		expect(parsed).not.toHaveProperty('direct');
 	});
 
 	it.each(Object.entries(shortHands))('maps -%s to %s', (shortOption, [longOption]) => {
@@ -116,15 +118,17 @@ describe('all CLI options and shorthands', () => {
 
 describe('frozen normalization and renderer edge cases', () => {
 	it.each([
-		[undefined, Number.POSITIVE_INFINITY],
-		[true, Number.POSITIVE_INFINITY],
-		[false, 0],
-		['true', Number.POSITIVE_INFINITY],
-		['false', 0],
-		['not-a-number', Number.POSITIVE_INFINITY],
+		[undefined, undefined],
+		[true, 0],
+		[false, undefined],
+		['true', 0],
+		['false', undefined],
+		['not-a-number', undefined],
 		[-2, 0],
 	] as const)('normalizes direct %s to %s', (direct, expected) => {
-		expect(setDefaultArguments({ direct, start: repoPath }).direct).toBe(expected);
+		const result = setDefaultArguments({ direct, start: repoPath });
+		expect(result.depth).toBe(expected);
+		expect(result).not.toHaveProperty('direct');
 	});
 
 	it('preserves output format precedence', () => {
