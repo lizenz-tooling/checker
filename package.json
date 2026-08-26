@@ -1,6 +1,6 @@
 {
 	"name": "@lizenz/checker",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Extract license information from installed npm packages",
 	"license": "BSD-3-Clause",
 	"type": "module",
