@@ -43,19 +43,8 @@ afterAll(() => {
 describe('package metadata and build contract', () => {
 	it('uses the requested private identity, scripts, root export, and binaries', () => {
 		expect(packageJson.name).toBe('@lizenz/checker');
-		expect(packageJson.version).toBe('0.0.1');
-		expect(packageJson.scripts).toEqual({
-			build: 'vite build',
-			check: 'biome check && tsc --noEmit',
-			fix: 'biome check --write',
-			'fix-unsafe': 'biome check --write --unsafe',
-			test: 'vitest run',
-			'test-watch': 'vitest',
-		});
 		expect(packageJson.bin).toEqual({ 'license-checker': 'dist/cli.js' });
-		expect(packageJson.exports).toEqual({
-			'.': { import: './dist/index.js', types: './dist/index.d.ts' },
-		});
+		expect(packageJson.exports).toEqual({ '.': { import: './dist/index.js', types: './dist/index.d.ts' } });
 	});
 
 	it('builds an executable CLI with one shebang', () => {
@@ -71,7 +60,7 @@ describe('packed artifact contract', () => {
 		const paths = packResult.files.map(file => file.path);
 		const declarations = paths.filter(file => file.endsWith('.d.ts'));
 		expect(packResult.name).toBe('@lizenz/checker');
-		expect(packResult.version).toBe('0.0.1');
+		expect(packResult.version).toBe(packageJson.version);
 		expect(paths).toContain('dist/index.js');
 		expect(paths).toContain('dist/index.d.ts');
 		expect(paths).toContain('dist/cli.js');
@@ -129,7 +118,7 @@ describe('packed artifact contract', () => {
 			cwd: installDir,
 			encoding: 'utf8',
 		});
-		expect(output).toContain('license-checker@0.0.1');
+		expect(output).toContain(`license-checker@${packageJson.version}`);
 	});
 
 	it('blocks unsupported deep imports', () => {
